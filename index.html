@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>ExpenseFlow - Free Personal Expense Tracker | Track Weekly & Monthly Spending</title>
+    <meta name="title" content="ExpenseFlow - Free Personal Expense Tracker | Track Weekly & Monthly Spending">
+    <meta name="description"
+        content="Track your daily expenses for free with ExpenseFlow. Get automatic weekly and monthly spending summaries. Secure cloud sync, beautiful dark UI, works on any device.">
+    <meta name="keywords"
+        content="expense tracker, money tracker, budget app, spending tracker, personal finance, weekly expenses, monthly expenses, free expense app">
+    <meta name="author" content="ExpenseFlow">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://akshat-agrawal18.github.io/expense-flow/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://akshat-agrawal18.github.io/expense-flow/">
+    <meta property="og:title" content="ExpenseFlow - Free Personal Expense Tracker">
+    <meta property="og:description"
+        content="Track your daily expenses for free. Get automatic weekly and monthly spending summaries with a beautiful dark UI.">
+    <meta property="og:image" content="https://akshat-agrawal18.github.io/expense-flow/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="ExpenseFlow">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://akshat-agrawal18.github.io/expense-flow/">
+    <meta property="twitter:title" content="ExpenseFlow - Free Personal Expense Tracker">
+    <meta property="twitter:description"
+        content="Track your daily expenses for free. Get automatic weekly and monthly spending summaries with a beautiful dark UI.">
+    <meta property="twitter:image" content="https://akshat-agrawal18.github.io/expense-flow/og-image.png">
+
+    <!-- Mobile App Meta -->
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ExpenseFlow">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="ExpenseFlow">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-config" content="none">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💸</text></svg>">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💸</text></svg>">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://uxyudkzwwwtaklfizylv.supabase.co">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ExpenseFlow",
+        "description": "Free personal expense tracker with weekly and monthly spending summaries",
+        "url": "https://akshat-agrawal18.github.io/expense-flow/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Track daily expenses",
+            "Weekly expense summaries",
+            "Monthly expense summaries",
+            "Secure cloud sync",
+            "Category-based tracking",
+            "Dark mode UI"
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Auth Section -->
+    <section id="auth-section" class="auth-section" role="main" aria-label="Authentication">
+        <div class="auth-container">
+            <header class="auth-header">
+                <div class="logo" role="banner">
+                    <div class="logo-icon" aria-hidden="true">💸</div>
+                    <span class="logo-text">Expense<span class="logo-accent">Flow</span></span>
+                </div>
+                <p class="tagline">Simple expense tracking</p>
+            </header>
+
+            <nav class="auth-tabs" role="tablist" aria-label="Authentication options">
+                <button class="auth-tab active" data-tab="login" role="tab" aria-selected="true"
+                    aria-controls="login-form" id="tab-login">Sign In</button>
+                <button class="auth-tab" data-tab="signup" role="tab" aria-selected="false" aria-controls="signup-form"
+                    id="tab-signup">Sign Up</button>
+            </nav>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active" autocomplete="on" role="tabpanel"
+                aria-labelledby="tab-login">
+                <div class="form-group">
+                    <label for="login-email">Email address</label>
+                    <input type="email" id="login-email" name="email" placeholder="name@example.com"
+                        autocomplete="email" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter password"
+                        autocomplete="current-password" required aria-required="true">
+                </div>
+                <button type="submit" class="btn btn-primary">Continue</button>
+                <p id="login-error" class="error-msg" role="alert" aria-live="polite"></p>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form" autocomplete="on" role="tabpanel" aria-labelledby="tab-signup"
+                hidden>
+                <div class="form-group">
+                    <label for="signup-email">Email address</label>
+                    <input type="email" id="signup-email" name="email" placeholder="name@example.com"
+                        autocomplete="email" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" placeholder="Min 6 characters"
+                        autocomplete="new-password" minlength="6" required aria-required="true">
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                <p id="signup-error" class="error-msg" role="alert" aria-live="polite"></p>
+                <p id="signup-success" class="success-msg" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section id="app-section" class="app-section hidden" aria-label="Expense Dashboard">
+        <header class="app-header" role="banner">
+            <div class="logo">
+                <div class="logo-icon" aria-hidden="true">💸</div>
+                <span class="logo-text">Expense<span class="logo-accent">Flow</span></span>
+            </div>
+            <div class="user-info">
+                <span id="user-email" aria-label="Logged in user"></span>
+                <button id="logout-btn" class="btn btn-outline" aria-label="Sign out of your account">Sign Out</button>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <!-- Dashboard Stats -->
+            <section class="dashboard" aria-label="Expense summaries">
+                <article class="stat-card" aria-labelledby="weekly-label">
+                    <div class="stat-icon" aria-hidden="true">📅</div>
+                    <p class="stat-label" id="weekly-label">This Week</p>
+                    <h2 class="stat-value" id="weekly-total" aria-live="polite">₹0</h2>
+                </article>
+                <article class="stat-card" aria-labelledby="monthly-label">
+                    <div class="stat-icon" aria-hidden="true">📆</div>
+                    <p class="stat-label" id="monthly-label">This Month</p>
+                    <h2 class="stat-value" id="monthly-total" aria-live="polite">₹0</h2>
+                </article>
+                <article class="stat-card" aria-labelledby="alltime-label">
+                    <div class="stat-icon" aria-hidden="true">💰</div>
+                    <p class="stat-label" id="alltime-label">All Time</p>
+                    <h2 class="stat-value" id="all-time-total" aria-live="polite">₹0</h2>
+                </article>
+            </section>
+
+            <!-- Add Expense -->
+            <section class="add-expense-section" aria-labelledby="add-expense-heading">
+                <h3 id="add-expense-heading"><span aria-hidden="true">➕</span> Add Expense</h3>
+                <form id="expense-form" aria-label="Add new expense">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expense-desc">Description</label>
+                            <input type="text" id="expense-desc" name="description" placeholder="What did you spend on?"
+                                required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="expense-amount">Amount (₹)</label>
+                            <input type="number" id="expense-amount" name="amount" placeholder="0" step="0.01"
+                                min="0.01" inputmode="decimal" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="expense-category">Category</label>
+                            <select id="expense-category" name="category" aria-label="Select expense category">
+                                <option value="Food">🍔 Food</option>
+                                <option value="Transport">🚗 Transport</option>
+                                <option value="Shopping">🛒 Shopping</option>
+                                <option value="Entertainment">🎬 Entertainment</option>
+                                <option value="Bills">📄 Bills</option>
+                                <option value="Other">📦 Other</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-add" aria-label="Add expense">Add</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Expense List -->
+            <section class="expense-list-section" aria-labelledby="expense-list-heading">
+                <h3 id="expense-list-heading"><span aria-hidden="true">📋</span> Recent Expenses</h3>
+                <div id="expense-list" class="expense-list" role="list" aria-label="List of recent expenses">
+                    <div class="empty-state" role="status">
+                        <div class="empty-state-icon" aria-hidden="true">📭</div>
+                        <p>No expenses yet. Start tracking!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer" role="contentinfo">
+            <p>© 2024 ExpenseFlow. Free forever.</p>
+        </footer>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
