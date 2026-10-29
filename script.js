@@ -145,6 +145,7 @@ expenseForm.addEventListener('submit', async (e) => {
     if (!description || isNaN(amount) || amount <= 0) return;
 
     const { data: { user } } = await supabaseClient.auth.getUser();
+    if (!user) return;
 
     const { data, error } = await supabaseClient
         .from('expenses')
@@ -168,9 +169,15 @@ expenseForm.addEventListener('submit', async (e) => {
 
 // Load Expenses
 async function loadExpenses() {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (!user) return;
+
+    // Row Level Security on the expenses table must restrict rows to their
+    // owner; this filter is defence in depth, not the access control.
     const { data: expenses, error } = await supabaseClient
         .from('expenses')
         .select('*')
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
     if (error) {
@@ -191,9 +198,9 @@ function renderExpenses(expenses) {
     }
 
     expenseList.innerHTML = expenses.map(expense => `
-        <div class="expense-item" data-id="${expense.id}">
+        <div class="expense-item" data-id="${escapeHtml(String(expense.id))}">
             <div class="expense-info">
-                <div class="expense-category-icon">${categoryIcons[expense.category] || '📦'}</div>
+                <div class="expense-category-icon">${Object.hasOwn(categoryIcons, expense.category) ? categoryIcons[expense.category] : '📦'}</div>
                 <div class="expense-details">
                     <h4>${escapeHtml(expense.description)}</h4>
                     <span class="expense-date">${formatDate(expense.created_at)}</span>
@@ -201,18 +208,30 @@ function renderExpenses(expenses) {
             </div>
             <div class="expense-amount">-₹${parseFloat(expense.amount).toFixed(2)}</div>
             <div class="expense-actions">
-                <button class="btn-delete" onclick="deleteExpense('${expense.id}')" title="Delete">🗑️</button>
+                <button class="btn-delete" data-id="${escapeHtml(String(expense.id))}" title="Delete">🗑️</button>
             </div>
         </div>
     `).join('');
 }
 
+// Delete buttons use event delegation instead of inline onclick handlers,
+// so no database value is ever placed inside JavaScript source, and the
+// Content-Security-Policy can forbid inline script.
+expenseList.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-delete');
+    if (btn && btn.dataset.id) deleteExpense(btn.dataset.id);
+});
+
 // Delete Expense
 async function deleteExpense(id) {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (!user) return;
+
     const { error } = await supabaseClient
         .from('expenses')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .eq('user_id', user.id);
 
     if (error) {
         console.error('Error deleting expense:', error);
