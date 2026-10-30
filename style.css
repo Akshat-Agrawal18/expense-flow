@@ -794,3 +794,18 @@ html { caret-color: var(--accent-primary); color-scheme: dark; }
     font-size: 13px;
     letter-spacing: 0.01em;
 }
+
+/* Icons: one drawn stroke set, sized in em, coloured by context */
+.icon { width: 1em; height: 1em; flex-shrink: 0; display: block; }
+.logo-icon { display: grid; place-items: center; color: #ffffff; }
+.logo-icon .icon { width: 22px; height: 22px; }
+.stat-icon { color: var(--accent-primary); }
+.stat-icon .icon { width: 22px; height: 22px; }
+.heading-icon { display: inline-flex; vertical-align: -3px; margin-right: 8px; color: var(--accent-primary); }
+.heading-icon .icon { width: 18px; height: 18px; }
+.empty-state-icon .icon { width: 40px; height: 40px; color: var(--text-tertiary); }
+.expense-category-icon { display: grid; place-items: center; color: var(--text-secondary); }
+.expense-category-icon .icon { width: 20px; height: 20px; }
+.btn-delete { display: inline-grid; place-items: center; color: var(--text-tertiary); background: none; border: 0; cursor: pointer; padding: 6px; border-radius: var(--radius-sm); }
+.btn-delete:hover { color: var(--error); background: var(--surface-hover); }
+.btn-delete .icon { width: 18px; height: 18px; }
