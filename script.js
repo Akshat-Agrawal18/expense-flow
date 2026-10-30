@@ -191,7 +191,7 @@ function renderExpenses(expenses) {
     }
 
     expenseList.innerHTML = expenses.map(expense => `
-        <div class="expense-item" data-id="${expense.id}">
+        <div class="expense-item" data-id="${escapeHtml(String(expense.id))}">
             <div class="expense-info">
                 <div class="expense-category-icon">${categoryIcons[expense.category] || '📦'}</div>
                 <div class="expense-details">
@@ -201,13 +201,18 @@ function renderExpenses(expenses) {
             </div>
             <div class="expense-amount">-₹${parseFloat(expense.amount).toFixed(2)}</div>
             <div class="expense-actions">
-                <button class="btn-delete" onclick="deleteExpense('${expense.id}')" title="Delete">🗑️</button>
+                <button class="btn-delete" data-id="${escapeHtml(String(expense.id))}" title="Delete" aria-label="Delete expense">🗑️</button>
             </div>
         </div>
     `).join('');
 }
 
-// Delete Expense
+// Delete Expense (one listener instead of inline onclick, so data never becomes code)
+expenseList.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-delete');
+    if (btn) deleteExpense(btn.dataset.id);
+});
+
 async function deleteExpense(id) {
     const { error } = await supabaseClient
         .from('expenses')
