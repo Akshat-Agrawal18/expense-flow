@@ -33,14 +33,13 @@ const allTimeTotal = document.getElementById('all-time-total');
 
 // Category Icons
 const categoryIcons = {
-    'Food': `<svg class="icon icon-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>`,
-    'Transport': `<svg class="icon icon-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>`,
-    'Shopping': `<svg class="icon icon-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>`,
-    'Entertainment': `<svg class="icon icon-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="2.18"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg>`,
-    'Bills': `<svg class="icon icon-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5M8 13h8M8 17h8M8 9h2"/></svg>`,
-    'Other': `<svg class="icon icon-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>`
+    'Food': '🍔',
+    'Transport': '🚗',
+    'Shopping': '🛒',
+    'Entertainment': '🎬',
+    'Bills': '📄',
+    'Other': '📦'
 };
-const trashIcon = `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`;
 
 // =========================================
 // AUTH FUNCTIONS
@@ -194,7 +193,7 @@ function renderExpenses(expenses) {
     expenseList.innerHTML = expenses.map(expense => `
         <div class="expense-item" data-id="${escapeHtml(String(expense.id))}">
             <div class="expense-info">
-                <div class="expense-category-icon">${categoryIcons[expense.category] || categoryIcons.Other}</div>
+                <div class="expense-category-icon">${categoryIcons[expense.category] || '📦'}</div>
                 <div class="expense-details">
                     <h4>${escapeHtml(expense.description)}</h4>
                     <span class="expense-date">${formatDate(expense.created_at)}</span>
@@ -202,7 +201,7 @@ function renderExpenses(expenses) {
             </div>
             <div class="expense-amount">-₹${parseFloat(expense.amount).toFixed(2)}</div>
             <div class="expense-actions">
-                <button class="btn-delete" data-id="${escapeHtml(String(expense.id))}" title="Delete" aria-label="Delete expense">${trashIcon}</button>
+                <button class="btn-delete" data-id="${escapeHtml(String(expense.id))}" title="Delete" aria-label="Delete expense">🗑️</button>
             </div>
         </div>
     `).join('');
